@@ -1,0 +1,1 @@
+export * from './prime-ng-data-table-extensions.module';

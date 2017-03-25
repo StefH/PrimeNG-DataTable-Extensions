@@ -1,0 +1,13 @@
+{
+  "generator-angular-library": {
+    "githubUsername": "StefH",
+    "githubRepoName": "PrimeNG-DataTable-Extensions",
+    "npmModuleName": "primeng-datatable-extensions",
+    "moduleGlobal": "primeNGDataTableExtensions",
+    "ngModuleName": "PrimeNGDataTableExtensions",
+    "selectorPrefix": "p-datatable",
+    "projectTitle": "PrimeNG DataTable Extensions",
+    "projectDescription": "Some extensions to the PrimeNG DataTable component (e.g. OData V4 support)",
+    "authorName": "Stef Heyenrath"
+  }
+}
