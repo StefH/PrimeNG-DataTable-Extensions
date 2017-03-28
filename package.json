@@ -32,7 +32,11 @@
   },
   "keywords": [
     "angular2",
-    "angular"
+    "angular",
+    "primeng",
+    "primeng-datatable",
+    "datatable",
+    "odata"
   ],
   "author": "Stef Heyenrath",
   "license": "MIT",
@@ -84,10 +88,11 @@
     "karma": "^1.4.1",
     "karma-coverage-istanbul-reporter": "^0.3.0",
     "karma-jasmine": "^1.0.2",
-    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.1",
-    "phantomjs-prebuilt": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.14",
+    "rxjs": "^5.2.0",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0",
     "standard-version": "^4.0.0",
