@@ -1,6 +1,6 @@
 {
   "name": "primeng-datatable-extensions",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Some extensions to the PrimeNG DataTable component (e.g. OData V4 support)",
   "main": "./bundles/primeng-datatable-extensions.umd.js",
   "module": "./index.js",
