@@ -17,7 +17,7 @@
     "src/index.ts"
   ],
   "angularCompilerOptions": {
-    "strictMetadataEmit": true,
+    "strictMetadataEmit": false,
     "genDir": "./dist/",
     "skipTemplateCodegen": true,
     "debug": true

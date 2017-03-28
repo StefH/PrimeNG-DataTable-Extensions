@@ -1,0 +1,20 @@
+{
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch phantomjs",
+            "type": "phantomjs",
+            "request": "launch",
+            "file": "${workspaceRoot}/dist/test.js",
+            "webRoot": "${workspaceRoot}",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs.exe",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack:///./*": "${workspaceRoot}/*"
+            }
+        }
+    ]
+}

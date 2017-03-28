@@ -1,1 +1,1 @@
-export * from './prime-ng-data-table-extensions.module';
+export * from './primeNGDataTableODataQueryExtensions';

@@ -29,7 +29,8 @@ export default {
     port: 8000,
     inline: true,
     hot: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    contentBase: 'demo'
   },
   plugins: [
     ...(IS_PROD ? [] : [new webpack.HotModuleReplacementPlugin()]),
