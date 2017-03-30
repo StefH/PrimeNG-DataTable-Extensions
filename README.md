@@ -8,7 +8,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/StefH/PrimeNG-DataTable-Extensions/master/LICENSE)
 
 ## Demo
-https://StefH.github.io/PrimeNG-DataTable-Extensions/demo
+https://StefH.github.io/PrimeNG-DataTable-Extensions
 
 ## Table of contents
 

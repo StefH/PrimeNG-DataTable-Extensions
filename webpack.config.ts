@@ -30,7 +30,7 @@ export default {
     inline: true,
     hot: true,
     historyApiFallback: true,
-    contentBase: 'demo'
+    // contentBase: 'demo'
   },
   plugins: [
     ...(IS_PROD ? [] : [new webpack.HotModuleReplacementPlugin()]),
