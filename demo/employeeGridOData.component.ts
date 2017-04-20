@@ -10,7 +10,7 @@ import { PrimeNGDataTableODataQueryExtensions } from '../src';
 console.log('`EmployeeGridODataComponent` component loaded asynchronously');
 
 @Component({
-    templateUrl: './employeeGridOData.component.html',
+    templateUrl: './demo/employeeGridOData.component.html',
     selector: 'p-datatable-employee-grid-odata',
     providers: [ { provide: ODataConfiguration, useFactory: NorthwindODataConfigurationFactory }, ODataServiceFactory ]
 })
