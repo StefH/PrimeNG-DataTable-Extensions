@@ -1,4 +1,6 @@
 # PrimeNG DataTable Extensions
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/StefH/PrimeNG-DataTable-Extensions.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/StefH/PrimeNG-DataTable-Extensions.svg?branch=master)](https://travis-ci.org/StefH/PrimeNG-DataTable-Extensions)
 [![codecov](https://codecov.io/gh/StefH/PrimeNG-DataTable-Extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/StefH/PrimeNG-DataTable-Extensions)
 [![npm version](https://badge.fury.io/js/primeng-datatable-extensions.svg)](http://badge.fury.io/js/primeng-datatable-extensions)
