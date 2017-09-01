@@ -1,6 +1,7 @@
 import * as webpack from 'webpack';
 import * as path from 'path';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import * as CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const IS_PROD: boolean = process.argv.indexOf('-p') > -1;
 
@@ -43,6 +44,9 @@ export default {
     ),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'demo', 'index.ejs')
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: path.join(__dirname, 'demo', 'assets'), to: 'assets' },
+    ]),
   ]
 };
