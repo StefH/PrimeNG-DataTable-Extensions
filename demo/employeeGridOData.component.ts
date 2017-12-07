@@ -1,9 +1,8 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { LazyLoadEvent, FilterMetadata } from 'primeng/primeng';
-import { Observable, Operator } from 'rxjs/Rx';
+import { Component, OnInit } from '@angular/core';
+import { ODataConfiguration, ODataPagedResult, ODataQuery, ODataService, ODataServiceFactory } from 'angular-odata-es5';
+import { LazyLoadEvent } from 'primeng/primeng';
 import { Employee } from '../test/employee';
 import { NorthwindODataConfigurationFactory } from './NorthwindODataConfigurationFactory';
-import { ODataConfiguration, ODataServiceFactory, ODataService, ODataQuery, ODataPagedResult } from 'angular-odata-es5';
 
 import { PrimeNGDataTableODataQueryExtensions } from '../src';
 
