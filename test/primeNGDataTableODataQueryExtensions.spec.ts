@@ -1,10 +1,12 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { inject, TestBed } from '@angular/core/testing';
-import { MockBackend } from '@angular/http/testing';
-import { BaseRequestOptions, Http, ConnectionBackend, HttpModule, Response, URLSearchParams, RequestOptionsArgs } from '@angular/http';
+import { BaseRequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { SortMeta, LazyLoadEvent, FilterMetadata } from 'primeng/primeng';
-import { ODataQuery, ODataConfiguration } from 'angular-odata-es5';
+import { ODataConfiguration, ODataQuery } from 'angular-odata-es5';
+
+import { LazyLoadEvent } from 'primeng/primeng';
 import { Employee } from './employee';
 
 import { PrimeNGDataTableODataQueryExtensions } from '../src/primeNGDataTableODataQueryExtensions';
@@ -17,17 +19,10 @@ describe('PrimeNGDataTableODataQueryExtensions', () => {
         TestBed.configureTestingModule({
             providers: [
                 BaseRequestOptions,
-                MockBackend,
-                {
-                    provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-                        return new Http(backend, defaultOptions);
-                    },
-                    deps: [MockBackend, BaseRequestOptions]
-                },
                 ODataConfiguration
             ],
             imports: [
-                HttpModule
+                HttpClientTestingModule
             ]
         });
     });
@@ -90,7 +85,7 @@ describe('PrimeNGDataTableODataQueryExtensions', () => {
         expect(query.OrderBy).toHaveBeenCalledWith('Name asc, Last desc');
     });
 
-    it('applyLazyLoadEvent.Exec eq', inject([ Http, ODataConfiguration ], (http: Http, cfg: ODataConfiguration) => {
+    it('applyLazyLoadEvent.Exec eq', inject([HttpClient, ODataConfiguration], (http: HttpClient, cfg: ODataConfiguration) => {
         // Assign
         const loadEvent: LazyLoadEvent = {
             filters: {
@@ -105,16 +100,16 @@ describe('PrimeNGDataTableODataQueryExtensions', () => {
         PrimeNGDataTableODataQueryExtensions.applyLazyLoadEvent(query, loadEvent);
         query.Exec();
 
-        const matcherURLSearchParams = {
-            asymmetricMatch: (params: URLSearchParams) => {
-                expect(params.get('$filter')).toEqual('X eq 123');
-                return true;
-            }
-        };
+        const getOptions: {
+            headers?: HttpHeaders;
+            observe: 'response';
+            params?: HttpParams;
+            reportProgress?: boolean;
+            responseType?: 'json';
+            withCredentials?: boolean;
+        } = { params: new HttpParams().append('$filter', 'X eq 123'), observe: 'response' };
 
-        expect(http.get).toHaveBeenCalledWith('http://localhost/odata/Employees', jasmine.objectContaining({
-            search: matcherURLSearchParams
-        }));
+        expect(http.get).toHaveBeenCalledWith('http://localhost/odata/Employees', getOptions);
     }));
 
     it('applyLazyLoadEvent() year', () => {

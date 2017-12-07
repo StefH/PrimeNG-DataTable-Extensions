@@ -1,10 +1,9 @@
-import { escape } from 'querystring';
 import { StringUtils } from 'string-split-join';
 
-import { SortMeta, LazyLoadEvent, FilterMetadata } from 'primeng/primeng';
 import { ODataQuery } from 'angular-odata-es5';
+import { FilterMetadata, LazyLoadEvent, SortMeta } from 'primeng/primeng';
 
-export class PrimeNGDataTableODataQueryExtensions<T> {
+export class PrimeNGDataTableODataQueryExtensions {
     private static separatorChar: ':';
     private static escapeChar: '\\';
 
@@ -25,7 +24,10 @@ export class PrimeNGDataTableODataQueryExtensions<T> {
                     const filter = event.filters[prop] as FilterMetadata;
 
                     if (filter.matchMode && filter.matchMode !== '') {
-                        const params = StringUtils.split(filter.matchMode.toLowerCase(), { separatorChar: this.separatorChar, escapeChar: this.escapeChar });
+                        const params = StringUtils.split(filter.matchMode.toLowerCase(), {
+                            separatorChar: PrimeNGDataTableODataQueryExtensions.separatorChar,
+                            escapeChar: PrimeNGDataTableODataQueryExtensions.escapeChar
+                        });
                         const operator = params[0];
 
                         // http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part2-url-conventions.html
@@ -57,7 +59,7 @@ export class PrimeNGDataTableODataQueryExtensions<T> {
                             // String Functions
                             case 'concat':
                                 filterOData.push(`${operator}(${prop}, '${params[1]}') ${params[2]} '${filter.value}'`);
-                            break;
+                                break;
 
                             case 'contains':
                             case 'endswith':
@@ -66,7 +68,7 @@ export class PrimeNGDataTableODataQueryExtensions<T> {
                                 break;
                             case 'length':
                                 filterOData.push(`${operator}(${prop}) ${params[1]} ${filter.value}`);
-                            break;
+                                break;
                             case 'substring':
                                 // Example: substring:1:eq
                                 if (params.length === 3) {
@@ -77,13 +79,13 @@ export class PrimeNGDataTableODataQueryExtensions<T> {
                                 if (params.length === 4) {
                                     filterOData.push(`${operator}(${prop}, ${params[1]}, ${params[2]}) ${params[3]} '${filter.value}'`);
                                 }
-                            break;
+                                break;
 
                             default:
-                                // no filterOData
+                            // no filterOData
                         }
                     }
-                 }
+                }
             }
 
             if (filterOData.length > 0) {

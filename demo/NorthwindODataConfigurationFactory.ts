@@ -1,4 +1,3 @@
-import { FactoryProvider  } from '@angular/core';
 import { ODataConfiguration } from 'angular-odata-es5';
 
 export class NorthwindODataConfigurationFactory {
