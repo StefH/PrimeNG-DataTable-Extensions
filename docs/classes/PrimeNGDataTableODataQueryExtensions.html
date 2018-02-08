@@ -248,9 +248,9 @@ export class PrimeNGDataTableODataQueryExtensions {
         if (event.filters) {
             const filterOData: string[] &#x3D; [];
 
-            for (const prop in event.filters) {
-                if (event.filters.hasOwnProperty(prop)) {
-                    const filter &#x3D; event.filters[prop] as FilterMetadata;
+            for (const filterProperty in event.filters) {
+                if (event.filters.hasOwnProperty(filterProperty)) {
+                    const filter &#x3D; event.filters[filterProperty] as FilterMetadata;
 
                     if (filter.matchMode &amp;&amp; filter.matchMode !&#x3D;&#x3D; &#x27;&#x27;) {
                         const params &#x3D; StringUtils.split(filter.matchMode.toLowerCase(), {
@@ -258,6 +258,9 @@ export class PrimeNGDataTableODataQueryExtensions {
                             escapeChar: PrimeNGDataTableODataQueryExtensions.escapeChar
                         });
                         const operator &#x3D; params[0];
+
+                        // Replace Boss.Name by Boss/Name
+                        const odataProperty: string &#x3D; filterProperty.replace(/\./g, &#x27;/&#x27;);
 
                         // http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part2-url-conventions.html
                         switch (operator) {
@@ -270,7 +273,7 @@ export class PrimeNGDataTableODataQueryExtensions {
                             case &#x27;totaloffsetminutes&#x27;:
                             case &#x27;totalseconds&#x27;:
                             case &#x27;year&#x27;:
-                                filterOData.push(&#x60;${operator}(${prop}) ${params[1]} ${filter.value}&#x60;);
+                                filterOData.push(&#x60;${operator}(${odataProperty}) ${params[1]} ${filter.value}&#x60;);
                                 break;
 
                             // Logical Operators
@@ -280,33 +283,33 @@ export class PrimeNGDataTableODataQueryExtensions {
                             case &#x27;ge&#x27;:
                             case &#x27;lt&#x27;:
                             case &#x27;le&#x27;:
-                                filterOData.push(&#x60;${prop} ${operator} ${filter.value}&#x60;);
+                                filterOData.push(&#x60;${odataProperty} ${operator} ${filter.value}&#x60;);
                                 break;
                             case &#x27;has&#x27;:
                                 throw new Error(&#x27;Logical Operator &quot;has&quot; is not supported yet!&#x27;);
 
                             // String Functions
                             case &#x27;concat&#x27;:
-                                filterOData.push(&#x60;${operator}(${prop}, &#x27;${params[1]}&#x27;) ${params[2]} &#x27;${filter.value}&#x27;&#x60;);
+                                filterOData.push(&#x60;${operator}(${odataProperty}, &#x27;${params[1]}&#x27;) ${params[2]} &#x27;${filter.value}&#x27;&#x60;);
                                 break;
 
                             case &#x27;contains&#x27;:
                             case &#x27;endswith&#x27;:
                             case &#x27;startswith&#x27;:
-                                filterOData.push(&#x60;${operator}(${prop}, &#x27;${filter.value}&#x27;)&#x60;);
+                                filterOData.push(&#x60;${operator}(${odataProperty}, &#x27;${filter.value}&#x27;)&#x60;);
                                 break;
                             case &#x27;length&#x27;:
-                                filterOData.push(&#x60;${operator}(${prop}) ${params[1]} ${filter.value}&#x60;);
+                                filterOData.push(&#x60;${operator}(${odataProperty}) ${params[1]} ${filter.value}&#x60;);
                                 break;
                             case &#x27;substring&#x27;:
                                 // Example: substring:1:eq
                                 if (params.length &#x3D;&#x3D;&#x3D; 3) {
-                                    filterOData.push(&#x60;${operator}(${prop}, ${params[1]}) ${params[2]} &#x27;${filter.value}&#x27;&#x60;);
+                                    filterOData.push(&#x60;${operator}(${odataProperty}, ${params[1]}) ${params[2]} &#x27;${filter.value}&#x27;&#x60;);
                                 }
 
                                 // Example: substring:1:2:eq
                                 if (params.length &#x3D;&#x3D;&#x3D; 4) {
-                                    filterOData.push(&#x60;${operator}(${prop}, ${params[1]}, ${params[2]}) ${params[3]} &#x27;${filter.value}&#x27;&#x60;);
+                                    filterOData.push(&#x60;${operator}(${odataProperty}, ${params[1]}, ${params[2]}) ${params[3]} &#x27;${filter.value}&#x27;&#x60;);
                                 }
                                 break;
 
