@@ -85,11 +85,12 @@ describe('PrimeNGDataTableODataQueryExtensions', () => {
         expect(query.OrderBy).toHaveBeenCalledWith('Name asc, Last desc');
     });
 
-    it('applyLazyLoadEvent.Exec eq', inject([HttpClient, ODataConfiguration], (http: HttpClient, cfg: ODataConfiguration) => {
+    it('applyLazyLoadEvent.Exec', inject([HttpClient, ODataConfiguration], (http: HttpClient, cfg: ODataConfiguration) => {
         // Assign
         const loadEvent: LazyLoadEvent = {
             filters: {
-                'X': { 'value': '123', 'matchMode': 'eq' }
+                'X': { 'value': '123', 'matchMode': 'eq' },
+                'Boss.Country.Name': { 'value': `'USA'`, 'matchMode': 'eq' }
             }
         };
 
@@ -107,7 +108,7 @@ describe('PrimeNGDataTableODataQueryExtensions', () => {
             reportProgress?: boolean;
             responseType?: 'json';
             withCredentials?: boolean;
-        } = { params: new HttpParams().append('$filter', 'X eq 123'), observe: 'response' };
+        } = { params: new HttpParams().append('$filter', `X eq 123 and Boss/Country/Name eq 'USA'`), observe: 'response' };
 
         expect(http.get).toHaveBeenCalledWith('http://localhost/odata/Employees', getOptions);
     }));
