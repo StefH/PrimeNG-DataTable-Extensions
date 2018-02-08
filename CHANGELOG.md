@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.5"></a>
+## [0.0.5](https://github.com/StefH/PrimeNG-DataTable-Extensions/compare/v0.0.4...v0.0.5) (2018-02-08)
+
+
+### Bug Fixes
+
+* **$code:** Fix nested property naming ([8967809](https://github.com/StefH/PrimeNG-DataTable-Extensions/commit/8967809))
+
+
+### BREAKING CHANGES
+
+* **$code:** "angular-odata-es5": "^0.2.10" is needed
+
+
+
 <a name="0.0.4"></a>
 ## [0.0.4](https://github.com/StefH/PrimeNG-DataTable-Extensions/compare/v0.0.3...v0.0.4) (2017-12-07)
 
