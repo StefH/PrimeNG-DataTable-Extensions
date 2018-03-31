@@ -109,7 +109,7 @@
     }
   },
   "dependencies": {
-    "angular-odata-es5": "^0.2.10",
+    "angular-odata-es5": "^0.3.2",
     "primeng": "^4.3.0",
     "string-split-join": "0.0.1"
   }
